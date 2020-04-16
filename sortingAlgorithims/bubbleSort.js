@@ -9,25 +9,19 @@ function bubbleSort(randomArray,ascending=true) {
     do{
         finishPassing = true
         for(var i = 0;i < randomArray.length;i++){
-            if(ascending){
-                if(randomArray[i] > randomArray[i+1]){
-                    randomArray = swapWithNext(randomArray,i)
-                    finishPassing = false
-                }
-            }else{
-                if(randomArray[i] < randomArray[i+1]){
-                    randomArray = swapWithNext(randomArray,i)
-                    finishPassing = false
-                }
+            if(randomArray[i] > randomArray[i+1]){
+                randomArray = swapWithNext(randomArray,i)
+                finishPassing = false
             }
         }
     }while(finishPassing == false)
+    if(!ascending){randomArray.reverse()}
     return randomArray
 }
 
 if (require.main === module) {
     var randomArray = [...Array(100)].map(() => Math.floor(Math.random() * 100));
     console.log("Input of " + String(randomArray))
-    result = bubbleSort(randomArray,ascending=false);
+    result = bubbleSort(randomArray,ascending=true);
     console.log("Output of " + String(result))
 }

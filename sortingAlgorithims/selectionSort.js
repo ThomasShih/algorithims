@@ -1,8 +1,6 @@
-function indexLoc(nums,smallest=true){
-    if(smallest){value = Math.min.apply(null,nums)}
-    else        {value = Math.max.apply(null,nums)};
+function indexLoc(nums){
     for (var i = 0; i < nums.length;i++){
-        if(nums[i]==value){
+        if(nums[i]==Math.min.apply(null,nums)){
             return i
         }
     }
@@ -13,16 +11,16 @@ function selectionSort(randomArray,ascending=true) {
 
     while(randomArray.length > 0){ //While the original array is not empty
         //Get the min/max value
-        if (ascending){value = Math.min.apply(null,randomArray)}
-        else          {value = Math.max.apply(null,randomArray)};
+        value = Math.min.apply(null,randomArray)
 
         //Remove the value from original array
-        randomArray.splice(indexLoc(randomArray,ascending),1);
+        randomArray.splice(indexLoc(randomArray),1);
 
         //Add the value to the list
         sortedArray.push(value)
     }
 
+    if(!ascending){randomArray.reverse()}
     return sortedArray
 }
 
