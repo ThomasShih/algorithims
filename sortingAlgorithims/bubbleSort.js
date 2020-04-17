@@ -5,7 +5,7 @@ function swapWithNext(inputArray,indexLoc){
     return inputArray
 }
 
-function bubbleSort(randomArray,ascending=true) {
+function bubbleSort(randomArray) {
     do{
         finishPassing = true
         for(var i = 0;i < randomArray.length;i++){
@@ -15,13 +15,12 @@ function bubbleSort(randomArray,ascending=true) {
             }
         }
     }while(finishPassing == false)
-    if(!ascending){randomArray.reverse()}
     return randomArray
 }
 
 if (require.main === module) {
     var randomArray = [...Array(100)].map(() => Math.floor(Math.random() * 100));
     console.log("Input of " + String(randomArray))
-    result = bubbleSort(randomArray,ascending=true);
+    result = bubbleSort(randomArray);
     console.log("Output of " + String(result))
 }

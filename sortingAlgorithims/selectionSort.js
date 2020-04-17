@@ -6,7 +6,7 @@ function indexLoc(nums){
     }
 }
 
-function selectionSort(randomArray,ascending=true) {
+function selectionSort(randomArray) {
     var sortedArray = []
 
     while(randomArray.length > 0){ //While the original array is not empty
@@ -20,7 +20,6 @@ function selectionSort(randomArray,ascending=true) {
         sortedArray.push(value)
     }
 
-    if(!ascending){randomArray.reverse()}
     return sortedArray
 }
 

@@ -8,7 +8,7 @@ function insert(inputArray,number){
     }
 }
 
-function insertionSort(randomArray,ascending=true) {
+function insertionSort(randomArray) {
     for(var i = 1;i < randomArray.length;i++){
         if(randomArray[i-1] > randomArray[i]){
             insertionValue = randomArray.splice(i,1)[0]
@@ -16,13 +16,12 @@ function insertionSort(randomArray,ascending=true) {
         }
     }
 
-    if(!ascending){randomArray.reverse()}
     return randomArray
 }
 
 if (require.main === module) {
     var randomArray = [...Array(100)].map(() => Math.floor(Math.random() * 100));
     console.log("Input of " + String(randomArray))
-    result = insertionSort(randomArray,ascending=true);
+    result = insertionSort(randomArray);
     console.log("Output of " + String(result))
 }
