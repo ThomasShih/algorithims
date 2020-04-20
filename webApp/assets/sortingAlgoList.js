@@ -16,21 +16,21 @@ const sortingAlgoList = [
         name:"Counting Sort",
     },
     {
+        id:"radixSort",
+        name:"Radix Sort",
+    },
+    {
+        id:"selectionSort",
+        name:"Selection Sort",
+    },
+    {
         id:"mergeSort",
         name:"Merge Sort",
     },
-    // {
-    //     id:"quickSort",
-    //     name:"Quick Sort",
-    // },
-    // {
-    //     id:"radixSort",
-    //     name:"Radix Sort",
-    // },
-    // {
-    //     id:"selectionSort",
-    //     name:"Selection Sort",
-    // },
+    {
+        id:"quickSort",
+        name:"Quick Sort",
+    },
 ]
 
 //for bubbleSort
@@ -163,10 +163,65 @@ function insertionSort(randomArray) {
     return returnArraySteps
 }
 
+//for radixSort
+const radixMagnitudeValue = (value,magnitude)=>{
+    let strValue = ""+value
+    let magValue = parseInt(strValue[strValue.length - magnitude - 1])
+    if(isNaN(magValue)){
+        return 0
+    }else{
+        return magValue
+    }
+}
+
+function radixSort(randomArray){
+    randomArray = randomArray.map(element => 10**element)
+    let returnArraySteps = []
+    for(var magnitude = 0;10**magnitude < Math.max.apply(null,randomArray);magnitude++){
+        let sortedArray = Array(10).fill([])
+        for(var index=0;index<randomArray.length;index++){
+            let value = randomArray[index]
+            let magVal = radixMagnitudeValue(value,magnitude)
+            sortedArray[magVal] = sortedArray[magVal].concat([value])
+            returnArraySteps.push([...sortedArray.flat()].map(element => Math.log10(element)))
+        }
+        randomArray = sortedArray.flat()
+    }
+    return returnArraySteps
+}
+
+//for selectionSort
+function indexLoc(nums){
+    for (var i = 0; i < nums.length;i++){
+        if(nums[i]==Math.min.apply(null,nums)){
+            return i
+        }
+    }
+}
+
+function selectionSort(randomArray) {
+    var returnArraySteps = []
+    var sortedArray = []
+    while(randomArray.length > 0){ //While the original array is not empty
+        //Get the min/max value
+        let value = Math.min.apply(null,randomArray)
+
+        //Remove the value from original array
+        randomArray.splice(indexLoc(randomArray),1);
+
+        //Add the value to the list
+        sortedArray.push(value)
+        returnArraySteps.push(sortedArray.concat(Array(randomArray.length).fill(0)))
+
+    }
+
+    return returnArraySteps
+}
+
 //for mergeSort
 var mergeSortSteps = []
-var initialArrayLength = []
-function merge(firstHalf,secondHalf){
+var initialArrayLengthMergeSort = []
+function mergeSortMerge(firstHalf,secondHalf){
     var mergedArray = []
 
     // while there is still numbers to merge
@@ -201,10 +256,10 @@ function mergeSort(randomArray) {
         const firstHalf = mergeSort(randomArray.splice(0,midpoint))
         const secondHalf = mergeSort(randomArray)
 
-        randomArray = merge(firstHalf,secondHalf)
+        randomArray = mergeSortMerge(firstHalf,secondHalf)
 
         if(randomArray.length > 2){
-            mergeSortSteps.push([...randomArray.concat(Array(initialArrayLength - randomArray.length).fill(0))])
+            mergeSortSteps.push([...randomArray.concat(Array(initialArrayLengthMergeSort - randomArray.length).fill(0))])
         }
     }
 
@@ -212,8 +267,57 @@ function mergeSort(randomArray) {
 }
 
 function mergeSortHandler(randomArray){
-    initialArrayLength = randomArray.length
+    initialArrayLengthMergeSort = randomArray.length
     mergeSort(randomArray)
     return mergeSortSteps
 }
-export {sortingAlgoList,bubbleSort,countingSort,heapSort,insertionSort,mergeSortHandler}
+
+//for quickSort
+var quickSortSteps = []
+var initialArrayLengthQuickSort = []
+function mergeArrays(leftArray,partitionValue,rightArray){
+    if(rightArray==undefined && leftArray==undefined){
+        var sortedArray = [partitionValue]
+    }else if(rightArray==undefined){
+        var sortedArray = leftArray.concat([partitionValue])
+    }else if(leftArray==undefined){
+        var sortedArray = [partitionValue].concat(rightArray)
+    }else{
+        var sortedArray = leftArray.concat([partitionValue].concat(rightArray))
+    }
+
+    return sortedArray
+}
+
+function getHalves(partitionValue,randomArray){
+    let leftHalf = []
+    let rightHalf = []
+
+    //place into new arrays
+    for(var i = 0;i<randomArray.length;i++){
+        let value = randomArray[i]
+        if(value<partitionValue){leftHalf.push(value)}
+        else{rightHalf.push(value)}
+    }
+
+    return [leftHalf,rightHalf]
+}
+
+function quickSort(randomArray) {
+    if(randomArray!=undefined&&randomArray.length > 1){
+        const partitionValue = randomArray.pop()
+        const halves = getHalves(partitionValue,randomArray)
+        let mergedArray = mergeArrays(quickSort(halves[0]),partitionValue,quickSort(halves[1]))
+        quickSortSteps.push([...mergedArray.concat(Array(initialArrayLengthQuickSort - randomArray.length).fill(0))])
+        return mergedArray
+    }
+    return randomArray
+}
+
+function quickSortHandler(randomArray){
+    initialArrayLengthQuickSort = randomArray.length
+    quickSort(randomArray)
+    return quickSortSteps
+}
+
+export {sortingAlgoList,bubbleSort,countingSort,heapSort,insertionSort,radixSort,selectionSort,mergeSortHandler,quickSortHandler}

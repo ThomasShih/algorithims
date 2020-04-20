@@ -1,4 +1,4 @@
-import {sortingAlgoList,bubbleSort,countingSort,heapSort,insertionSort,mergeSortHandler} from "../assets/sortingAlgoList"
+import {sortingAlgoList,bubbleSort,countingSort,heapSort,insertionSort,mergeSortHandler,quickSortHandler,radixSort,selectionSort} from "../assets/sortingAlgoList"
 import Dots from "./Dots"
 
 function processSort(randomArray,algoName){
@@ -12,6 +12,12 @@ function processSort(randomArray,algoName){
     var arraySteps = insertionSort([...randomArray])
   }else if (algoName=="Merge Sort"){
     var arraySteps = mergeSortHandler([...randomArray])
+  }else if (algoName=="Quick Sort"){
+    var arraySteps = quickSortHandler([...randomArray])
+  }else if (algoName=="Radix Sort"){
+    var arraySteps = radixSort([...randomArray])
+  }else if (algoName=="Selection Sort"){
+    var arraySteps = selectionSort([...randomArray])
   }else {var arraySteps = bubbleSort([...randomArray])}
 
   return arraySteps

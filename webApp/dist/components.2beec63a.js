@@ -157,7 +157,10 @@ exports.bubbleSort = bubbleSort;
 exports.countingSort = countingSort;
 exports.heapSort = heapSort;
 exports.insertionSort = insertionSort;
+exports.radixSort = radixSort;
+exports.selectionSort = selectionSort;
 exports.mergeSortHandler = mergeSortHandler;
+exports.quickSortHandler = quickSortHandler;
 exports.sortingAlgoList = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -181,21 +184,18 @@ var sortingAlgoList = [{
   id: "countingSort",
   name: "Counting Sort"
 }, {
+  id: "radixSort",
+  name: "Radix Sort"
+}, {
+  id: "selectionSort",
+  name: "Selection Sort"
+}, {
   id: "mergeSort",
   name: "Merge Sort"
-} // {
-//     id:"quickSort",
-//     name:"Quick Sort",
-// },
-// {
-//     id:"radixSort",
-//     name:"Radix Sort",
-// },
-// {
-//     id:"selectionSort",
-//     name:"Selection Sort",
-// },
-]; //for bubbleSort
+}, {
+  id: "quickSort",
+  name: "Quick Sort"
+}]; //for bubbleSort
 
 exports.sortingAlgoList = sortingAlgoList;
 
@@ -335,13 +335,76 @@ function insertionSort(randomArray) {
   }
 
   return returnArraySteps;
+} //for radixSort
+
+
+var radixMagnitudeValue = function radixMagnitudeValue(value, magnitude) {
+  var strValue = "" + value;
+  var magValue = parseInt(strValue[strValue.length - magnitude - 1]);
+
+  if (isNaN(magValue)) {
+    return 0;
+  } else {
+    return magValue;
+  }
+};
+
+function radixSort(randomArray) {
+  randomArray = randomArray.map(function (element) {
+    return Math.pow(10, element);
+  });
+  var returnArraySteps = [];
+
+  for (var magnitude = 0; Math.pow(10, magnitude) < Math.max.apply(null, randomArray); magnitude++) {
+    var sortedArray = Array(10).fill([]);
+
+    for (var index = 0; index < randomArray.length; index++) {
+      var value = randomArray[index];
+      var magVal = radixMagnitudeValue(value, magnitude);
+      sortedArray[magVal] = sortedArray[magVal].concat([value]);
+      returnArraySteps.push(_toConsumableArray(sortedArray.flat()).map(function (element) {
+        return Math.log10(element);
+      }));
+    }
+
+    randomArray = sortedArray.flat();
+  }
+
+  return returnArraySteps;
+} //for selectionSort
+
+
+function indexLoc(nums) {
+  for (var i = 0; i < nums.length; i++) {
+    if (nums[i] == Math.min.apply(null, nums)) {
+      return i;
+    }
+  }
+}
+
+function selectionSort(randomArray) {
+  var returnArraySteps = [];
+  var sortedArray = [];
+
+  while (randomArray.length > 0) {
+    //While the original array is not empty
+    //Get the min/max value
+    var value = Math.min.apply(null, randomArray); //Remove the value from original array
+
+    randomArray.splice(indexLoc(randomArray), 1); //Add the value to the list
+
+    sortedArray.push(value);
+    returnArraySteps.push(sortedArray.concat(Array(randomArray.length).fill(0)));
+  }
+
+  return returnArraySteps;
 } //for mergeSort
 
 
 var mergeSortSteps = [];
-var initialArrayLength = [];
+var initialArrayLengthMergeSort = [];
 
-function merge(firstHalf, secondHalf) {
+function mergeSortMerge(firstHalf, secondHalf) {
   var mergedArray = []; // while there is still numbers to merge
 
   do {
@@ -376,10 +439,10 @@ function mergeSort(randomArray) {
 
     var firstHalf = mergeSort(randomArray.splice(0, midpoint));
     var secondHalf = mergeSort(randomArray);
-    randomArray = merge(firstHalf, secondHalf);
+    randomArray = mergeSortMerge(firstHalf, secondHalf);
 
     if (randomArray.length > 2) {
-      mergeSortSteps.push(_toConsumableArray(randomArray.concat(Array(initialArrayLength - randomArray.length).fill(0))));
+      mergeSortSteps.push(_toConsumableArray(randomArray.concat(Array(initialArrayLengthMergeSort - randomArray.length).fill(0))));
     }
   }
 
@@ -387,9 +450,62 @@ function mergeSort(randomArray) {
 }
 
 function mergeSortHandler(randomArray) {
-  initialArrayLength = randomArray.length;
+  initialArrayLengthMergeSort = randomArray.length;
   mergeSort(randomArray);
   return mergeSortSteps;
+} //for quickSort
+
+
+var quickSortSteps = [];
+var initialArrayLengthQuickSort = [];
+
+function mergeArrays(leftArray, partitionValue, rightArray) {
+  if (rightArray == undefined && leftArray == undefined) {
+    var sortedArray = [partitionValue];
+  } else if (rightArray == undefined) {
+    var sortedArray = leftArray.concat([partitionValue]);
+  } else if (leftArray == undefined) {
+    var sortedArray = [partitionValue].concat(rightArray);
+  } else {
+    var sortedArray = leftArray.concat([partitionValue].concat(rightArray));
+  }
+
+  return sortedArray;
+}
+
+function getHalves(partitionValue, randomArray) {
+  var leftHalf = [];
+  var rightHalf = []; //place into new arrays
+
+  for (var i = 0; i < randomArray.length; i++) {
+    var value = randomArray[i];
+
+    if (value < partitionValue) {
+      leftHalf.push(value);
+    } else {
+      rightHalf.push(value);
+    }
+  }
+
+  return [leftHalf, rightHalf];
+}
+
+function quickSort(randomArray) {
+  if (randomArray != undefined && randomArray.length > 1) {
+    var partitionValue = randomArray.pop();
+    var halves = getHalves(partitionValue, randomArray);
+    var mergedArray = mergeArrays(quickSort(halves[0]), partitionValue, quickSort(halves[1]));
+    quickSortSteps.push(_toConsumableArray(mergedArray.concat(Array(initialArrayLengthQuickSort - randomArray.length).fill(0))));
+    return mergedArray;
+  }
+
+  return randomArray;
+}
+
+function quickSortHandler(randomArray) {
+  initialArrayLengthQuickSort = randomArray.length;
+  quickSort(randomArray);
+  return quickSortSteps;
 }
 },{}],"components/Dots.js":[function(require,module,exports) {
 "use strict";
@@ -550,6 +666,12 @@ function processSort(randomArray, algoName) {
     var arraySteps = (0, _sortingAlgoList.insertionSort)(_toConsumableArray(randomArray));
   } else if (algoName == "Merge Sort") {
     var arraySteps = (0, _sortingAlgoList.mergeSortHandler)(_toConsumableArray(randomArray));
+  } else if (algoName == "Quick Sort") {
+    var arraySteps = (0, _sortingAlgoList.quickSortHandler)(_toConsumableArray(randomArray));
+  } else if (algoName == "Radix Sort") {
+    var arraySteps = (0, _sortingAlgoList.radixSort)(_toConsumableArray(randomArray));
+  } else if (algoName == "Selection Sort") {
+    var arraySteps = (0, _sortingAlgoList.selectionSort)(_toConsumableArray(randomArray));
   } else {
     var arraySteps = (0, _sortingAlgoList.bubbleSort)(_toConsumableArray(randomArray));
   }
@@ -664,7 +786,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60254" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60636" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

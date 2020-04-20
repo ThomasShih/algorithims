@@ -1,5 +1,3 @@
-var smaller = inputArray => {}
-
 function mergeArrays(leftArray,partitionValue,rightArray){
     if(rightArray==undefined && leftArray==undefined){
         var sortedArray = [partitionValue]

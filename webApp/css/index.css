@@ -27,4 +27,5 @@
 .dot{
     background-color: var(--main-bg-color);
     border-radius: 10%;
+    border: 1px solid black;
 }
