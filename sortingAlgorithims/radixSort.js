@@ -8,7 +8,6 @@ const magnitudeValue = (value,magnitude)=>{
     }
 }
 
-
 function radixSort(randomArray){
     for(var magnitude = 0;10**magnitude < Math.max.apply(null,randomArray);magnitude++){
         sortedArray = Array(10).fill([])

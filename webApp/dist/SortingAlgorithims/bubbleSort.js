@@ -18,14 +18,14 @@ function bubbleSort(randomArray) {
     return randomArray
 }
 
-if (require.main === module) {
-    var randomArray = [...Array(100)].map(() => Math.floor(Math.random() * 100));
-    console.log("Input of " + String(randomArray))
-    result = bubbleSort(randomArray);
-    console.log("Output of " + String(result))
-}
+// if (require.main === module) {
+//     var randomArray = [...Array(100)].map(() => Math.floor(Math.random() * 100));
+//     console.log("Input of " + String(randomArray))
+//     result = bubbleSort(randomArray);
+//     console.log("Output of " + String(result))
+// }
 
-export function test(){
+export default function testImport(){
     console.log("HI")
 }
 
