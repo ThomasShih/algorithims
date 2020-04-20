@@ -3,7 +3,7 @@ const refreshPeriod = 400
 class Dot extends React.Component{
     render(){
       return(
-        <div className="dot" style={{opacity:this.props.height/100}}></div>
+        <div className="dot" style={{opacity:this.props.value/100}}></div>
       )
     }
   }
@@ -23,7 +23,7 @@ class Dots extends React.Component{
   }
 
   render(){
-      let dots = this.state.currentArray.map((element,index) => <Dot height={this.state.currentArray[index]}/>)
+      let dots = this.state.currentArray.map((element,index) => <Dot value={this.state.currentArray[index]}/>)
       return(
       <div className="dotContainer">
           {dots}

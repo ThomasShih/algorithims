@@ -4,6 +4,24 @@
     --component-bg-color: #c5d8ef ;
 }
 
+.sortingAlgorithimHeader{
+    background-color: var(--component-bg-color);
+    grid-column:1/span 2;
+    padding: 2vw;
+    border-radius:20px;
+}
+
+.sortingAlgoPage{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    padding: 2vw;
+}
+
 .algorithim{
     justify-content: center;
     text-align: center;
@@ -16,12 +34,12 @@
     display: grid;
     justify-content: center;
     text-align: center;
-    grid-template-columns: repeat(20, 2vw);
+    grid-template-columns: repeat(20, 1.5vw);
     grid-template-rows: 1fr;
     grid-column-gap: .5vw;
     grid-row-gap: 0px;
-    padding:100px;
-    height: 2vw;
+    padding:10px;
+    height: 1.5vw;
 }
 
 .dot{

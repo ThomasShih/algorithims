@@ -547,7 +547,7 @@ function (_React$Component) {
       return React.createElement("div", {
         className: "dot",
         style: {
-          opacity: this.props.height / 100
+          opacity: this.props.value / 100
         }
       });
     }
@@ -596,7 +596,7 @@ function (_React$Component2) {
 
       var dots = this.state.currentArray.map(function (element, index) {
         return React.createElement(Dot, {
-          height: _this3.state.currentArray[index]
+          value: _this3.state.currentArray[index]
         });
       });
       return React.createElement("div", {
@@ -691,8 +691,7 @@ function (_React$Component) {
       return React.createElement("div", {
         className: "algorithim"
       }, React.createElement("h1", null, this.props.name), React.createElement(_Dots.default, {
-        inputArray: processSort(this.props.inputArray, this.props.name),
-        directory: this.props.directory
+        inputArray: processSort(this.props.inputArray, this.props.name)
       }));
     }
   }]);
@@ -700,10 +699,35 @@ function (_React$Component) {
   return Algorithim;
 }(React.Component);
 
-var SortingAlgorithims =
+var Header =
 /*#__PURE__*/
 function (_React$Component2) {
-  _inherits(SortingAlgorithims, _React$Component2);
+  _inherits(Header, _React$Component2);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
+  }
+
+  _createClass(Header, [{
+    key: "render",
+    value: function render() {
+      return React.createElement("div", {
+        className: "sortingAlgorithimHeader"
+      }, React.createElement("h1", null, "Sorting Algorithims"), React.createElement("h2", null, "Hello! This site is meant to be a quick reference guide to sorting algorithims, along with their explinations and a pretty animation for each algorithim. The input array is randomly generated each time this site loads and is then processed via each algorithim."), React.createElement(_Dots.default, {
+        inputArray: [this.props.inputArray]
+      }));
+    }
+  }]);
+
+  return Header;
+}(React.Component);
+
+var SortingAlgorithims =
+/*#__PURE__*/
+function (_React$Component3) {
+  _inherits(SortingAlgorithims, _React$Component3);
 
   function SortingAlgorithims() {
     var _this;
@@ -712,18 +736,18 @@ function (_React$Component2) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SortingAlgorithims).call(this)); //Generate a list of unique numbers
 
-    var inputArray = [];
+    _this.inputArray = [];
 
-    while (inputArray.length < 20) {
+    while (_this.inputArray.length < 20) {
       var r = Math.floor(Math.random() * 100) + 1;
-      if (inputArray.indexOf(r) === -1) inputArray.push(r);
+      if (_this.inputArray.indexOf(r) === -1) _this.inputArray.push(r);
     }
 
     _this.algorithimList = _sortingAlgoList.sortingAlgoList.map(function (algo) {
       return React.createElement(Algorithim, {
         id: algo.id,
         name: algo.name,
-        inputArray: inputArray,
+        inputArray: _this.inputArray,
         directory: "../SortingAlgorithims"
       });
     });
@@ -733,7 +757,11 @@ function (_React$Component2) {
   _createClass(SortingAlgorithims, [{
     key: "render",
     value: function render() {
-      return React.createElement("div", null, this.algorithimList);
+      return React.createElement("div", {
+        className: "sortingAlgoPage"
+      }, React.createElement(Header, {
+        inputArray: this.inputArray
+      }), this.algorithimList);
     }
   }]);
 
