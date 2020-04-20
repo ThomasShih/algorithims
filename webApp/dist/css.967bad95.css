@@ -16,17 +16,17 @@
     display: grid;
     justify-content: center;
     text-align: center;
-    grid-template-columns: repeat(10, 6vw);
+    grid-template-columns: repeat(20, 2vw);
     grid-template-rows: 1fr;
-    grid-column-gap: 0px;
+    grid-column-gap: .5vw;
     grid-row-gap: 0px;
     padding:100px;
+    height: 2vw;
 }
 
 .dot{
-    background-color: black;
+    background-color: var(--main-bg-color);
     border-radius: 10%;
-    width:5vw;
 }
 
 

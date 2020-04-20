@@ -3,7 +3,7 @@ const refreshPeriod = 400
 class Dot extends React.Component{
     render(){
       return(
-        <div className="dot" style={{height:this.props.height}}></div>
+        <div className="dot" style={{opacity:this.props.height/100}}></div>
       )
     }
   }
