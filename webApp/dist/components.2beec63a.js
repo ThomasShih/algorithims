@@ -350,21 +350,16 @@ var radixMagnitudeValue = function radixMagnitudeValue(value, magnitude) {
 };
 
 function radixSort(randomArray) {
-  randomArray = randomArray.map(function (element) {
-    return Math.pow(10, element);
-  });
   var returnArraySteps = [];
 
-  for (var magnitude = 0; Math.pow(10, magnitude) < Math.max.apply(null, randomArray); magnitude++) {
+  for (var magnitude = 0; Math.pow(10, magnitude) <= Math.max.apply(null, randomArray); magnitude++) {
     var sortedArray = Array(10).fill([]);
 
     for (var index = 0; index < randomArray.length; index++) {
       var value = randomArray[index];
       var magVal = radixMagnitudeValue(value, magnitude);
       sortedArray[magVal] = sortedArray[magVal].concat([value]);
-      returnArraySteps.push(_toConsumableArray(sortedArray.flat()).map(function (element) {
-        return Math.log10(element);
-      }));
+      returnArraySteps.push(_toConsumableArray(sortedArray.flat()));
     }
 
     randomArray = sortedArray.flat();

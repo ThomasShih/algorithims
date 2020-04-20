@@ -175,15 +175,14 @@ const radixMagnitudeValue = (value,magnitude)=>{
 }
 
 function radixSort(randomArray){
-    randomArray = randomArray.map(element => 10**element)
     let returnArraySteps = []
-    for(var magnitude = 0;10**magnitude < Math.max.apply(null,randomArray);magnitude++){
+    for(var magnitude = 0;10**magnitude <= Math.max.apply(null,randomArray);magnitude++){
         let sortedArray = Array(10).fill([])
         for(var index=0;index<randomArray.length;index++){
             let value = randomArray[index]
             let magVal = radixMagnitudeValue(value,magnitude)
             sortedArray[magVal] = sortedArray[magVal].concat([value])
-            returnArraySteps.push([...sortedArray.flat()].map(element => Math.log10(element)))
+            returnArraySteps.push([...sortedArray.flat()])
         }
         randomArray = sortedArray.flat()
     }
