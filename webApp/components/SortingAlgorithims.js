@@ -1,5 +1,6 @@
 import {sortingAlgoList,bubbleSort,countingSort,heapSort,insertionSort,mergeSortHandler,quickSortHandler,radixSort,selectionSort} from "../assets/sortingAlgoList"
 import Dots from "./Dots"
+import headerContent from "../assets/sortingAlgoHeader"
 
 function processSort(randomArray,algoName){
   if(algoName=="Bubble Sort"){
@@ -27,8 +28,11 @@ class Algorithim extends React.Component{
   render(){
     return(
       <div className="algorithim">
-          <h1>{this.props.name}</h1>
-          <Dots inputArray={processSort(this.props.inputArray,this.props.name)}/>
+          <h1 className="algoName">{this.props.name}</h1>
+          <h2 className="timeComplexity" >Time: {this.props.timeComplexity}</h2>
+          <h2 className="spaceComplexity">Space: {this.props.spaceComplexity}</h2>
+          <h1 className="desc">{this.props.desc}</h1>
+          <Dots className="algorithimAnimation" inputArray={processSort(this.props.inputArray,this.props.name)}/>
       </div>
   )};
 }
@@ -38,10 +42,10 @@ class Header extends React.Component{
     return(
       <div className="sortingAlgorithimHeader">
         <h1>
-          Sorting Algorithims
+          {headerContent.title}
         </h1>
         <h2>
-          Hello! This site is meant to be a quick reference guide to sorting algorithims, along with their explinations and a pretty animation for each algorithim. The input array is randomly generated each time this site loads and is then processed via each algorithim.
+          {headerContent.description}
         </h2>
         <Dots inputArray={[this.props.inputArray]}/>
       </div>
@@ -60,6 +64,9 @@ class SortingAlgorithims extends React.Component{
 
     this.algorithimList = sortingAlgoList.map(algo => <Algorithim id={algo.id}
                                                                   name={algo.name}
+                                                                  timeComplexity={algo.timeComplexity}
+                                                                  spaceComplexity={algo.spaceComplexity}
+                                                                  desc={algo.desc}
                                                                   inputArray={this.inputArray}
                                                                   directory={"../SortingAlgorithims"}/>)
   }

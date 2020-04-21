@@ -173,28 +173,52 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var sortingAlgoList = [{
   id: "bubbleSort",
-  name: "Bubble Sort"
+  name: "Bubble Sort",
+  timeComplexity: "n\^2",
+  spaceComplexity: "1",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "heapSort",
-  name: "Heap Sort"
+  name: "Heap Sort",
+  timeComplexity: "n*log(n)",
+  spaceComplexity: "1",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "insertionSort",
-  name: "Insertion Sort"
+  name: "Insertion Sort",
+  timeComplexity: "n\^2",
+  spaceComplexity: "1",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "countingSort",
-  name: "Counting Sort"
+  name: "Counting Sort",
+  timeComplexity: "n+k",
+  spaceComplexity: "k",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "radixSort",
-  name: "Radix Sort"
+  name: "Radix Sort",
+  timeComplexity: "nk",
+  spaceComplexity: "n+k",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "selectionSort",
-  name: "Selection Sort"
+  name: "Selection Sort",
+  timeComplexity: "n\^2",
+  spaceComplexity: "1",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "mergeSort",
-  name: "Merge Sort"
+  name: "Merge Sort",
+  timeComplexity: "n*log(n)",
+  spaceComplexity: "n",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
   id: "quickSort",
-  name: "Quick Sort"
+  name: "Quick Sort",
+  timeComplexity: "n*log(n)",
+  spaceComplexity: "log(n)",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }]; //for bubbleSort
 
 exports.sortingAlgoList = sortingAlgoList;
@@ -393,7 +417,8 @@ function selectionSort(randomArray) {
   }
 
   return returnArraySteps;
-} //for mergeSort
+} //TODO: find a better way to visualize mergeSort and quickSort
+//for mergeSort
 
 
 var mergeSortSteps = [];
@@ -610,6 +635,19 @@ function (_React$Component2) {
 
 var _default = Dots;
 exports.default = _default;
+},{}],"assets/sortingAlgoHeader.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var headerContent = {
+  title: "Sorting Algorithims",
+  description: "Hello! This site is meant to be a quick reference guide to sorting algorithims, along with their explinations and a pretty animation for each algorithim. The input array is randomly generated each time this site loads and is then processed via each algorithim."
+};
+var _default = headerContent;
+exports.default = _default;
 },{}],"components/SortingAlgorithims.js":[function(require,module,exports) {
 "use strict";
 
@@ -621,6 +659,8 @@ exports.default = void 0;
 var _sortingAlgoList = require("../assets/sortingAlgoList");
 
 var _Dots = _interopRequireDefault(require("./Dots"));
+
+var _sortingAlgoHeader = _interopRequireDefault(require("../assets/sortingAlgoHeader"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -690,7 +730,16 @@ function (_React$Component) {
     value: function render() {
       return React.createElement("div", {
         className: "algorithim"
-      }, React.createElement("h1", null, this.props.name), React.createElement(_Dots.default, {
+      }, React.createElement("h1", {
+        className: "algoName"
+      }, this.props.name), React.createElement("h2", {
+        className: "timeComplexity"
+      }, "Time: ", this.props.timeComplexity), React.createElement("h2", {
+        className: "spaceComplexity"
+      }, "Space: ", this.props.spaceComplexity), React.createElement("h1", {
+        className: "desc"
+      }, this.props.desc), React.createElement(_Dots.default, {
+        className: "algorithimAnimation",
         inputArray: processSort(this.props.inputArray, this.props.name)
       }));
     }
@@ -715,7 +764,7 @@ function (_React$Component2) {
     value: function render() {
       return React.createElement("div", {
         className: "sortingAlgorithimHeader"
-      }, React.createElement("h1", null, "Sorting Algorithims"), React.createElement("h2", null, "Hello! This site is meant to be a quick reference guide to sorting algorithims, along with their explinations and a pretty animation for each algorithim. The input array is randomly generated each time this site loads and is then processed via each algorithim."), React.createElement(_Dots.default, {
+      }, React.createElement("h1", null, _sortingAlgoHeader.default.title), React.createElement("h2", null, _sortingAlgoHeader.default.description), React.createElement(_Dots.default, {
         inputArray: [this.props.inputArray]
       }));
     }
@@ -747,6 +796,9 @@ function (_React$Component3) {
       return React.createElement(Algorithim, {
         id: algo.id,
         name: algo.name,
+        timeComplexity: algo.timeComplexity,
+        spaceComplexity: algo.spaceComplexity,
+        desc: algo.desc,
         inputArray: _this.inputArray,
         directory: "../SortingAlgorithims"
       });
@@ -770,7 +822,7 @@ function (_React$Component3) {
 
 var _default = SortingAlgorithims;
 exports.default = _default;
-},{"../assets/sortingAlgoList":"assets/sortingAlgoList.js","./Dots":"components/Dots.js"}],"components/index.js":[function(require,module,exports) {
+},{"../assets/sortingAlgoList":"assets/sortingAlgoList.js","./Dots":"components/Dots.js","../assets/sortingAlgoHeader":"assets/sortingAlgoHeader.js"}],"components/index.js":[function(require,module,exports) {
 "use strict";
 
 var _checkCDN = _interopRequireDefault(require("../utilities/checkCDN"));
@@ -809,7 +861,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60636" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49814" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

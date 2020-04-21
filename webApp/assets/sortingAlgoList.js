@@ -2,34 +2,58 @@ const sortingAlgoList = [
     {
         id:"bubbleSort",
         name:"Bubble Sort",
+        timeComplexity:"n\^2",
+        spaceComplexity:"1",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"heapSort",
         name:"Heap Sort",
+        timeComplexity:"n*log(n)",
+        spaceComplexity:"1",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"insertionSort",
         name:"Insertion Sort",
+        timeComplexity:"n\^2",
+        spaceComplexity:"1",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"countingSort",
         name:"Counting Sort",
+        timeComplexity:"n+k",
+        spaceComplexity:"k",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"radixSort",
         name:"Radix Sort",
+        timeComplexity:"nk",
+        spaceComplexity:"n+k",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"selectionSort",
         name:"Selection Sort",
+        timeComplexity:"n\^2",
+        spaceComplexity:"1",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"mergeSort",
         name:"Merge Sort",
+        timeComplexity:"n*log(n)",
+        spaceComplexity:"n",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
     {
         id:"quickSort",
         name:"Quick Sort",
+        timeComplexity:"n*log(n)",
+        spaceComplexity:"log(n)",
+        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
     },
 ]
 
@@ -217,6 +241,7 @@ function selectionSort(randomArray) {
     return returnArraySteps
 }
 
+//TODO: find a better way to visualize mergeSort and quickSort
 //for mergeSort
 var mergeSortSteps = []
 var initialArrayLengthMergeSort = []
