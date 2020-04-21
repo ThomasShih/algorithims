@@ -57,7 +57,7 @@ class SortingAlgorithims extends React.Component{
   constructor(){super()
     //Generate a list of unique numbers
     this.inputArray = [];
-    while(this.inputArray.length < 20){
+    while(this.inputArray.length < 40){
         var r = Math.floor(Math.random() * 100) + 1;
         if(this.inputArray.indexOf(r) === -1) this.inputArray.push(r);
     }

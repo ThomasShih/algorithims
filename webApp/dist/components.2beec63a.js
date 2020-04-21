@@ -190,18 +190,6 @@ var sortingAlgoList = [{
   spaceComplexity: "1",
   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
-  id: "countingSort",
-  name: "Counting Sort",
-  timeComplexity: "n+k",
-  spaceComplexity: "k",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
-}, {
-  id: "radixSort",
-  name: "Radix Sort",
-  timeComplexity: "nk",
-  spaceComplexity: "n+k",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
-}, {
   id: "selectionSort",
   name: "Selection Sort",
   timeComplexity: "n\^2",
@@ -218,6 +206,18 @@ var sortingAlgoList = [{
   name: "Quick Sort",
   timeComplexity: "n*log(n)",
   spaceComplexity: "log(n)",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+}, {
+  id: "countingSort",
+  name: "Counting Sort",
+  timeComplexity: "n+k",
+  spaceComplexity: "k",
+  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+}, {
+  id: "radixSort",
+  name: "Radix Sort",
+  timeComplexity: "nk",
+  spaceComplexity: "n+k",
   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }]; //for bubbleSort
 
@@ -802,7 +802,7 @@ function (_React$Component3) {
 
     _this.inputArray = [];
 
-    while (_this.inputArray.length < 20) {
+    while (_this.inputArray.length < 40) {
       var r = Math.floor(Math.random() * 100) + 1;
       if (_this.inputArray.indexOf(r) === -1) _this.inputArray.push(r);
     }
