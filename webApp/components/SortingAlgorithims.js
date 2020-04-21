@@ -47,6 +47,7 @@ class Header extends React.Component{
         <h2>
           {headerContent.description}
         </h2>
+        <h3>For a link to all my other work and GitHub, please visit me at <a href={headerContent.link}>thomasshih.codes</a></h3>
         <Dots inputArray={[this.props.inputArray]}/>
       </div>
     )
