@@ -27,12 +27,11 @@ function merge(firstHalf,secondHalf){
 }
 
 function mergeSort(randomArray) {
-
     if (randomArray.length > 1){//keep splitting until size 1
-        midpoint = Math.round(randomArray.length/2) //Get the midpoint, if uneven, get the rounded up midpoint
+        let midpoint = Math.ceil([...randomArray].length/2) //Get the midpoint, if uneven, get the rounded up midpoint
         //if not sorted
-        const firstHalf = mergeSort(randomArray.splice(0,midpoint))
-        const secondHalf = mergeSort(randomArray)
+        const firstHalf = mergeSort(randomArray.slice(0,midpoint))
+        const secondHalf = mergeSort(randomArray.slice(midpoint,randomArray.length))
 
         randomArray = merge(firstHalf,secondHalf)
     }
@@ -40,7 +39,7 @@ function mergeSort(randomArray) {
 }
 
 if (require.main === module) {
-    var randomArray = [...Array(100)].map(() => Math.floor(Math.random() * 100));
+    var randomArray = [...Array(6)].map(() => Math.floor(Math.random() * 100));
     console.log("Input of " + String(randomArray))
     result = mergeSort(randomArray);
     console.log("Output of " + String(result))

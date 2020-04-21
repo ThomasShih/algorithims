@@ -176,17 +176,17 @@ var sortingAlgoList = [{
   name: "Bubble Sort",
   timeComplexity: "n\^2",
   spaceComplexity: "1",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
-}, {
-  id: "heapSort",
-  name: "Heap Sort",
-  timeComplexity: "n*log(n)",
-  spaceComplexity: "1",
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+  desc: "The simplest sorting algorithim for one to understand, however performance wise, this algorithim is one of the worst. The algorithm works by continously swapping algorithims adjacent to each other until no more can be swapped, at which point the array is sorted."
 }, {
   id: "insertionSort",
   name: "Insertion Sort",
   timeComplexity: "n\^2",
+  spaceComplexity: "1",
+  desc: "Similar to how humans sort, insertion sort work by looking through the array, and inserting each element to its correct place in the indices before."
+}, {
+  id: "heapSort",
+  name: "Heap Sort",
+  timeComplexity: "n*log(n)",
   spaceComplexity: "1",
   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
 }, {
@@ -417,12 +417,27 @@ function selectionSort(randomArray) {
   }
 
   return returnArraySteps;
+} //for mergeSort and quickSort
+
+
+function range(from, to) {
+  return _toConsumableArray(Array(to - from).keys()).map(function (i) {
+    return i + from;
+  });
+}
+
+function copytoSteps(inMemoryArray, newArray, leftBound, rightBound) {
+  var indexRange = range(leftBound, rightBound);
+
+  for (var i = 0; i < indexRange.length; i++) {
+    inMemoryArray[indexRange[i]] = newArray[i];
+  }
 } //TODO: find a better way to visualize mergeSort and quickSort
 //for mergeSort
 
 
 var mergeSortSteps = [];
-var initialArrayLengthMergeSort = [];
+var arrayMemoryMS = [];
 
 function mergeSortMerge(firstHalf, secondHalf) {
   var mergedArray = []; // while there is still numbers to merge
@@ -451,33 +466,31 @@ function mergeSortMerge(firstHalf, secondHalf) {
   return mergedArray;
 }
 
-function mergeSort(randomArray) {
+function mergeSort(randomArray, leftBound, rightBound) {
   if (randomArray.length > 1) {
     //keep splitting until size 1
-    var midpoint = Math.round(randomArray.length / 2); //Get the midpoint, if uneven, get the rounded up midpoint
+    var midpoint = Math.ceil(_toConsumableArray(randomArray).length / 2); //Get the midpoint, if uneven, get the rounded up midpoint
     //if not sorted
 
-    var firstHalf = mergeSort(randomArray.splice(0, midpoint));
-    var secondHalf = mergeSort(randomArray);
+    var firstHalf = mergeSort(randomArray.slice(0, midpoint), leftBound, midpoint + leftBound);
+    var secondHalf = mergeSort(randomArray.slice(midpoint, randomArray.length), midpoint + leftBound, rightBound);
     randomArray = mergeSortMerge(firstHalf, secondHalf);
-
-    if (randomArray.length > 2) {
-      mergeSortSteps.push(_toConsumableArray(randomArray.concat(Array(initialArrayLengthMergeSort - randomArray.length).fill(0))));
-    }
   }
 
+  copytoSteps(arrayMemoryMS, randomArray, leftBound, rightBound);
+  mergeSortSteps.push(_toConsumableArray(arrayMemoryMS));
   return randomArray;
 }
 
 function mergeSortHandler(randomArray) {
-  initialArrayLengthMergeSort = randomArray.length;
-  mergeSort(randomArray);
+  arrayMemoryMS = randomArray;
+  mergeSort(randomArray, 0, randomArray.length);
   return mergeSortSteps;
 } //for quickSort
 
 
 var quickSortSteps = [];
-var initialArrayLengthQuickSort = [];
+var arrayMemoryQS = [];
 
 function mergeArrays(leftArray, partitionValue, rightArray) {
   if (rightArray == undefined && leftArray == undefined) {
@@ -510,21 +523,23 @@ function getHalves(partitionValue, randomArray) {
   return [leftHalf, rightHalf];
 }
 
-function quickSort(randomArray) {
+function quickSort(randomArray, leftBound, rightBound) {
   if (randomArray != undefined && randomArray.length > 1) {
     var partitionValue = randomArray.pop();
     var halves = getHalves(partitionValue, randomArray);
-    var mergedArray = mergeArrays(quickSort(halves[0]), partitionValue, quickSort(halves[1]));
-    quickSortSteps.push(_toConsumableArray(mergedArray.concat(Array(initialArrayLengthQuickSort - randomArray.length).fill(0))));
-    return mergedArray;
+    var leftHalfSorted = quickSort(halves[0], leftBound, leftBound + halves[0].length);
+    var rightHalfSorted = quickSort(halves[1], leftBound + halves[0].length, rightBound);
+    randomArray = mergeArrays(leftHalfSorted, partitionValue, rightHalfSorted);
   }
 
+  copytoSteps(arrayMemoryQS, randomArray, leftBound, rightBound);
+  quickSortSteps.push(_toConsumableArray(arrayMemoryQS));
   return randomArray;
 }
 
 function quickSortHandler(randomArray) {
-  initialArrayLengthQuickSort = randomArray.length;
-  quickSort(randomArray);
+  arrayMemoryQS = randomArray;
+  quickSort(randomArray, 0, randomArray.length);
   return quickSortSteps;
 }
 },{}],"components/Dots.js":[function(require,module,exports) {
@@ -861,7 +876,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49814" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55151" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
