@@ -18,42 +18,42 @@ const sortingAlgoList = [
         name:"Heap Sort",
         timeComplexity:"n*log(n)",
         spaceComplexity:"1",
-        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+        desc:"The array is processed as a \"heap\" tree where the nodes/elements above is always greater than the nodes below. This allows for the algorithim to remove the top node and know that it is the largest element in the heap. This loop is processed until there is no more elements in the heap."
     },
     {
         id:"selectionSort",
         name:"Selection Sort",
         timeComplexity:"n\^2",
         spaceComplexity:"1",
-        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
-    },
-    {
-        id:"mergeSort",
-        name:"Merge Sort",
-        timeComplexity:"n*log(n)",
-        spaceComplexity:"n",
-        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
-    },
-    {
-        id:"quickSort",
-        name:"Quick Sort",
-        timeComplexity:"n*log(n)",
-        spaceComplexity:"log(n)",
-        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+        desc:"Selection sort works by looking through the list of elements and constantly selecting the element with lowest value and appending it onto a new list. This is done n times where n is the length of the orignal element. The animation shown is the final output array where values are selected and placed."
     },
     {
         id:"countingSort",
         name:"Counting Sort",
         timeComplexity:"n+k",
         spaceComplexity:"k",
-        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+        desc:"Black Magic. Just kidding this is the best sorting algorithim but only works when the said values have distinct key values (like integers). This algorithim works by creating a second array of size k (the largest number in the original array) and counts how many times that each element occurs in the orignal array. This second array provides a map of exactly which element should be where, this allows for the algorithim to know exactly where to place each element in the final output array."
     },
     {
         id:"radixSort",
         name:"Radix Sort",
         timeComplexity:"nk",
         spaceComplexity:"n+k",
-        desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet enim at risus efficitur, eu euismod sem posuere. In tortor justo, elementum a tortor at, cursus egestas lorem. Nunc eu pretium elit. Nulla consequat porttitor ex. Nullam dapibus ac orci quis dignissim. Sed et gravida lorem. Cras suscipit purus vitae urna tempus condimentum. In fringilla congue dignissim."
+        desc:"This algorithim only works with integers. It sorts each element in the array by looping through each decimal place and sorting these chunks of numbers until the biggest magnitude of input numbers are processed. The input array shown above and passed into all other algorithims are raised by 2^(element) for processing to exaggerate the effects of radix sort."
+    },
+    {
+        id:"mergeSort",
+        name:"Merge Sort",
+        timeComplexity:"n*log(n)",
+        spaceComplexity:"n",
+        desc:"Merge sort uses a \"divide and conquer\" technique where it recursively breaks the array down into smaller and smaller halves until each halve is an individual element. At which point the algorithim merges each haves by comparing its values until everything is merged."
+    },
+    {
+        id:"quickSort",
+        name:"Quick Sort",
+        timeComplexity:"n*log(n)",
+        spaceComplexity:"log(n)",
+        desc:"Quick sort also uses a \"divide and conquer\" technique, however it instead takes a random number from the list and move all elements smaller than said number to one side, and all elements larger than side number to the other side. This is done recursively until blocks of elements moved only contains one element."
     },
 ]
 
@@ -200,15 +200,16 @@ const radixMagnitudeValue = (value,magnitude)=>{
 
 function radixSort(randomArray){
     let returnArraySteps = []
+    randomArray = randomArray.map(element => 2**element)
     for(var magnitude = 0;10**magnitude <= Math.max.apply(null,randomArray);magnitude++){
         let sortedArray = Array(10).fill([])
         for(var index=0;index<randomArray.length;index++){
             let value = randomArray[index]
             let magVal = radixMagnitudeValue(value,magnitude)
             sortedArray[magVal] = sortedArray[magVal].concat([value])
-            returnArraySteps.push([...sortedArray.flat()])
         }
         randomArray = sortedArray.flat()
+        returnArraySteps.push([...randomArray.map(element => Math.log2(element))])
     }
     return returnArraySteps
 }
