@@ -11,4 +11,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"../assets/sortingAlgoList":"PMbl","./Dots":"TkCY","../assets/sortingAlgoHeader":"PKDe"}],"iA92":[function(require,module,exports) {
 "use strict";var e=r(require("../utilities/checkCDN")),t=r(require("../components/SortingAlgorithims"));function r(e){return e&&e.__esModule?e:{default:e}}(0,e.default)(),ReactDOM.render(React.createElement(t.default,null),document.getElementById("body"));
 },{"../utilities/checkCDN":"fPKt","../components/SortingAlgorithims":"UXBy"}]},{},["iA92"], null)
-//# sourceMappingURL=/components.3c6449cd.js.map
+//# sourceMappingURL=/components.a7022d57.js.map

@@ -1,18 +1,20 @@
 const refreshPeriod = 400
 
 class Dot extends React.Component{
-    render(){
-      return(
-        <div className="dot" style={{opacity:this.props.value/100}}></div>
-      )
-    }
+  render(){
+    return(
+      <div className="dot" style={{opacity:this.props.value/100}}></div>
+    )
   }
+}
 
 class Dots extends React.Component{
   constructor(props){super()
-    this.state={sortingSteps:props.inputArray,
-                currentArray:props.inputArray[0],
-                index:0}
+    this.state={
+                  sortingSteps:props.inputArray,
+                  currentArray:props.inputArray[0],
+                  index:0
+                }
   }
 
   componentDidMount() {
