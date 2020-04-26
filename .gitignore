@@ -1,2 +1,2 @@
-./webApp/Dist/*
-./webApp/.cache/*
+webApp/Dist/*
+webApp/.cache/*
