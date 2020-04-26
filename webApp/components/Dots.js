@@ -1,12 +1,6 @@
 const refreshPeriod = 400
 
-class Dot extends React.Component{
-  render(){
-    return(
-      <div className="dot" style={{opacity:this.props.value/100}}></div>
-    )
-  }
-}
+const Dot = ({value}) => <div className="dot" style={{opacity:value/100}}></div>
 
 class Dots extends React.Component{
   constructor(props){super()
