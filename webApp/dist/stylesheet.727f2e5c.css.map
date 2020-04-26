@@ -1,1 +1,0 @@
-{"version":3,"sources":["stylesheet.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"stylesheet.727f2e5c.css","sourceRoot":"..","sourcesContent":[":root {\r\n    --main-bg-color:#316cb3   ;\r\n    --main-text-color: white;\r\n    --component-bg-color: #c5d8ef ;\r\n}\r\n\r\nbody{\r\n    background-color: var(--main-bg-color);\r\n}"]}
