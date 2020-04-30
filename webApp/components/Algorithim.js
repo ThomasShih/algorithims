@@ -1,8 +1,7 @@
 import {bubbleSort,countingSort,heapSort,insertionSort,mergeSortHandler,quickSortHandler,radixSort,selectionSort} from "../assets/sortingAlgoList"
 import Dots from "./Dots"
 
-function Algorithim(props){
-  const {algorithimProfile:data,inputArray} = props
+function Algorithim({algorithimProfile:data,inputArray}){
   return(
     <div className="algorithim">
         <h1 className="algoName">{data.name}</h1>
@@ -15,25 +14,17 @@ function Algorithim(props){
 }
 
 function processSort(randomArray,algoName){
-  if(algoName=="Bubble Sort"){
-    var arraySteps = bubbleSort([...randomArray])
-  }else if (algoName=="Counting Sort"){
-    var arraySteps = countingSort([...randomArray])
-  }else if (algoName=="Heap Sort"){
-    var arraySteps = heapSort([...randomArray])
-  }else if (algoName=="Insertion Sort"){
-    var arraySteps = insertionSort([...randomArray])
-  }else if (algoName=="Merge Sort"){
-    var arraySteps = mergeSortHandler([...randomArray])
-  }else if (algoName=="Quick Sort"){
-    var arraySteps = quickSortHandler([...randomArray])
-  }else if (algoName=="Radix Sort"){
-    var arraySteps = radixSort([...randomArray])
-  }else if (algoName=="Selection Sort"){
-    var arraySteps = selectionSort([...randomArray])
-  }else {var arraySteps = bubbleSort([...randomArray])}
-
-  return arraySteps
+  switch(algoName){
+    case "Bubble Sort":     return bubbleSort([...randomArray])
+    case "Counting Sort":   return countingSort([...randomArray])
+    case "Heap Sort":       return heapSort([...randomArray])
+    case "Insertion Sort":  return insertionSort([...randomArray])
+    case "Merge Sort":      return mergeSortHandler([...randomArray])
+    case "Quick Sort":      return quickSortHandler([...randomArray])
+    case "Radix Sort":      return radixSort([...randomArray])
+    case "Selection Sort":  return selectionSort([...randomArray])
+    default:                return bubbleSort([...randomArray])
+  }
 }
 
 export default Algorithim

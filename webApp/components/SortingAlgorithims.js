@@ -2,27 +2,27 @@ import {sortingAlgoList} from "../assets/sortingAlgoList"
 import Algorithim from "./Algorithim"
 import Header from "./SortingAlgorithimsHeader"
 
-
-class SortingAlgorithims extends React.Component{
-  constructor(){super()
-    //Generate a list of unique numbers
-    this.inputArray = [];
-    while(this.inputArray.length < 40){
-        var r = Math.floor(Math.random() * 100) + 1;
-        if(this.inputArray.indexOf(r) === -1) this.inputArray.push(r);
-    }
-
-    this.algorithimList = sortingAlgoList.map(algo => <Algorithim key={algo.id}
-                                                                  algorithimProfile={algo}
-                                                                  inputArray={this.inputArray}/>)
+const generateRandomArray = () => {
+  let randomArray = []
+  while(randomArray.length < 40){
+      var r = Math.floor(Math.random() * 100) + 1;
+      if(randomArray.indexOf(r) === -1) randomArray.push(r);
   }
 
-  render(){return(
+  return randomArray
+}
+
+function SortingAlgorithims(){
+  const randomArray = generateRandomArray()
+  const algorithimList = sortingAlgoList.map(algo => <Algorithim  key={algo.id}
+                                                                  algorithimProfile={algo}
+                                                                  inputArray={randomArray}/>)
+  return(
       <div className="sortingAlgoPage">
-        <Header inputArray={this.inputArray} />
-        {this.algorithimList}
+        <Header inputArray={randomArray} />
+        {algorithimList}
       </div>
-  )}
+  )
 }
 
 export default SortingAlgorithims
