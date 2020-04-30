@@ -26,13 +26,14 @@ function processSort(randomArray,algoName){
 
 class Algorithim extends React.Component{
   render(){
+    const {algorithimProfile:data,inputArray} = this.props
     return(
       <div className="algorithim">
-          <h1 className="algoName">{this.props.name}</h1>
-          <h2 className="timeComplexity" >Time: {this.props.timeComplexity}</h2>
-          <h2 className="spaceComplexity">Space: {this.props.spaceComplexity}</h2>
-          <h1 className="desc">{this.props.desc}</h1>
-          <Dots className="algorithimAnimation" inputArray={processSort(this.props.inputArray,this.props.name)}/>
+          <h1 className="algoName">{data.name}</h1>
+          <h2 className="timeComplexity" >Time: {data.timeComplexity}</h2>
+          <h2 className="spaceComplexity">Space: {data.spaceComplexity}</h2>
+          <h1 className="desc">{data.desc}</h1>
+          <Dots className="algorithimAnimation" inputArray={processSort(inputArray,data.name)}/>
       </div>
   )};
 }
@@ -64,13 +65,8 @@ class SortingAlgorithims extends React.Component{
     }
 
     this.algorithimList = sortingAlgoList.map(algo => <Algorithim key={algo.id}
-                                                                  id={algo.id}
-                                                                  name={algo.name}
-                                                                  timeComplexity={algo.timeComplexity}
-                                                                  spaceComplexity={algo.spaceComplexity}
-                                                                  desc={algo.desc}
-                                                                  inputArray={this.inputArray}
-                                                                  directory={"../SortingAlgorithims"}/>)
+                                                                  algorithimProfile={algo}
+                                                                  inputArray={this.inputArray}/>)
   }
 
   render(){return(
