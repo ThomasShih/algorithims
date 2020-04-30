@@ -63,7 +63,8 @@ class SortingAlgorithims extends React.Component{
         if(this.inputArray.indexOf(r) === -1) this.inputArray.push(r);
     }
 
-    this.algorithimList = sortingAlgoList.map(algo => <Algorithim id={algo.id}
+    this.algorithimList = sortingAlgoList.map(algo => <Algorithim key={algo.id}
+                                                                  id={algo.id}
                                                                   name={algo.name}
                                                                   timeComplexity={algo.timeComplexity}
                                                                   spaceComplexity={algo.spaceComplexity}

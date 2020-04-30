@@ -1,30 +1,24 @@
 const refreshPeriod = 400
-
 const Dot = ({value}) => <div className="dot" style={{opacity:value/100}}></div>
 
-class Dots extends React.Component{
-  constructor(props){super()
-    this.state={
-                  sortingSteps:props.inputArray,
-                  currentArray:props.inputArray[0],
-                  index:0
-                }
+function Dots({inputArray : sortingSteps}){
+  const [index,setIndex] = React.useState(0)
+  const [dots,setDots] = React.useState([])
+
+  const nextStep = () => {
+    setTimeout(() => {
+      setDots(sortingSteps[index].map((element,index) => <Dot key={index} value={element}/>))
+      setIndex(index + 1 < sortingSteps.length? index + 1 : 0)
+      },refreshPeriod
+    )
   }
 
-  componentDidMount() {
-    this.interval = setInterval(() => this.setState(state => ({
-                                                              index: state.index < state.sortingSteps.length - 1? state.index + 1: 0,
-                                                              currentArray: state.sortingSteps[state.index]
-                                                            })), refreshPeriod)
-  }
+  React.useEffect(nextStep,[index])
 
-  render(){
-      let dots = this.state.currentArray.map((element,index) => <Dot value={this.state.currentArray[index]}/>)
-      return(
-      <div className="dotContainer">
-          {dots}
-      </div>
-  )};
+  return(
+    <div className="dotContainer">
+        {dots}
+    </div>
+  )
 }
-
 export default Dots
